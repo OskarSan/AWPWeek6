@@ -1,6 +1,6 @@
 import { Router, Request, Response } from "express";
 import multer from "multer";
-import {Image, IImage } from "../models/image";
+import {Image, IImage } from "../models/Image";
 import upload from "../middleware/multer-config";
 
 const router: Router = Router();
