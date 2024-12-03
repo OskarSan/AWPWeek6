@@ -29,7 +29,7 @@ router.post("/upload", multer_config_1.default.single('image'), async (req, res)
             await image.save();
             offer.imageId = image._id.toString();
             await offer.save();
-            res.json({ message: "Offer with image created successfully", path: imgPath });
+            res.status(201).json({ message: "Offer with image created successfully", path: imgPath });
         }
     }
     catch (error) {

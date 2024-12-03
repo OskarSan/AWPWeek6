@@ -35,7 +35,7 @@ router.post("/upload", upload.single('image'), async (req : Request, res : Respo
             offer.imageId = image._id.toString();
             await offer.save();
 
-            res.json({message: "Offer with image created successfully", path: imgPath});
+            res.status(201).json({message: "Offer with image created successfully", path: imgPath});
         }
     
     
