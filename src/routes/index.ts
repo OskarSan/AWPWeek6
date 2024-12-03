@@ -74,7 +74,7 @@ router.get("/offers", async (req: Request, res: Response) => {
             resOffers.push(tOffer);
         }
 
-        res.status(200).json({ offers: resOffers });
+        res.status(200).json(resOffers);
     } catch (error) {
         console.log(error);
         res.status(500).json({ status: false, data: "Internal Server Error" });

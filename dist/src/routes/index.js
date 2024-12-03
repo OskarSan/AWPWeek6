@@ -56,7 +56,7 @@ router.get("/offers", async (req, res) => {
             };
             resOffers.push(tOffer);
         }
-        res.status(200).json({ offers: resOffers });
+        res.status(200).json(resOffers);
     }
     catch (error) {
         console.log(error);

@@ -47,9 +47,9 @@ async function updateOffers(){
             method: 'GET'
         });
         const offers = await offersRes.json();
-        console.log(offers.offers.length, "offers");
+        console.log(offers.length, "offers");
         offersContainer.innerHTML = '';
-        for (let offer of offers.offers) {
+        for (let offer of offers) {
             console.log(offer.imageId)
             const offerDiv = document.createElement('div');
             offerDiv.classList.add("offerDiv")
