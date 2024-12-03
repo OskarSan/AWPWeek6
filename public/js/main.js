@@ -5,7 +5,7 @@ const textArea = document.getElementById('description');
 const imageInput = document.getElementById('image');
 const submitBtn = document.getElementById('submit');
 const offersContainer = document.getElementById('offersContainer');
-
+updateOffers();
 offerForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     console.log('submit');
