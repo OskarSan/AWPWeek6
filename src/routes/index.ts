@@ -37,19 +37,34 @@ router.post("/upload", upload.single('image'), async (req : Request, res : Respo
 
             res.status(201).json({message: "Offer with image created successfully", path: imgPath});
         }
-    
-    
-        
-     
-        
-        
-
-        
-
-
     } catch (error) {
         console.log(error);
     } 
+});
+
+
+
+router.get("/offers", async (req : Request, res : Response) => {
+
+
+    try{
+        const offers : IOffer[] = await Offer.find();
+        console.log(offers[0]);
+        for(let i = 0; i < offers.length; i++){
+            if(offers[i].imageId){
+                const image : IImage | null = await Image.findById(offers[i].imageId);
+                if (image) {
+                    offers[i].imageId = image.path;
+                }}else{
+                    offers[i].imageId = "";
+                }
+        }
+        res.status(201).json({offers});
+    } catch (error) {
+        console.log(error);
+    }
+
+
 });
 
 export default router

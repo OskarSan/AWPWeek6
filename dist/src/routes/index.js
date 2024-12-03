@@ -36,4 +36,25 @@ router.post("/upload", multer_config_1.default.single('image'), async (req, res)
         console.log(error);
     }
 });
+router.get("/offers", async (req, res) => {
+    try {
+        const offers = await Offer_1.Offer.find();
+        console.log(offers[0]);
+        for (let i = 0; i < offers.length; i++) {
+            if (offers[i].imageId) {
+                const image = await Image_1.Image.findById(offers[i].imageId);
+                if (image) {
+                    offers[i].imageId = image.path;
+                }
+            }
+            else {
+                offers[i].imageId = "";
+            }
+        }
+        res.status(201).json({ offers });
+    }
+    catch (error) {
+        console.log(error);
+    }
+});
 exports.default = router;
