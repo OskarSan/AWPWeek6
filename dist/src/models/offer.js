@@ -39,6 +39,7 @@ const OfferSchema = new mongoose_1.Schema({
     title: { type: String, required: true },
     description: { type: String, required: true },
     price: { type: Number, required: true },
+    imageId: { type: String, required: false },
     date: { type: Date, default: Date.now }
 });
 const Offer = mongoose_1.default.model('Offer', OfferSchema);

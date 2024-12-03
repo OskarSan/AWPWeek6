@@ -37,9 +37,7 @@ exports.Image = void 0;
 const mongoose_1 = __importStar(require("mongoose"));
 const ImageSchema = new mongoose_1.Schema({
     filename: { type: String, required: true },
-    description: { type: String, required: true },
     path: { type: String, required: true },
-    timestamp: { type: Date, default: Date.now }
 });
 const Image = mongoose_1.default.model('Image', ImageSchema);
 exports.Image = Image;

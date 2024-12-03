@@ -16,30 +16,31 @@ router.post("/upload", upload.single('image'), async (req : Request, res : Respo
             price: req.body.price
         });
 
-        
-        console.log(offer);
-        await offer.save();
-        res.status(201).json({message: "Offer created successfully", offer});
-        /*
+
         if(!req.file){
-            res.status(400).json({
-                status: false,
-                data: "No file is selected."
-            });
-            return;
+            
+            
+            console.log(offer);
+            await offer.save();
+            res.status(201).json({message: "Offer created successfully", offer});
+            
+    
         } else {
             const imgPath : string = req.file.path.replace("public", "");
 
             const image : IImage = new Image({
                 filename: req.file.filename,
-                description: req.body.description,
                 path: imgPath
             });
             await image.save();
-            res.json({message: "Image uploaded successfully", path: imgPath});
+
+            offer.imageId = image._id.toString();
+            await offer.save();
+
+            res.json({message: "Offer with image created successfully", path: imgPath});
         }
     
-        */
+    
         
      
         
