@@ -19,7 +19,8 @@ router.post("/upload", upload.single('image'), async (req : Request, res : Respo
         
         console.log(offer);
         await offer.save();
-        
+        res.status(201).json({message: "Offer created successfully", offer});
+        /*
         if(!req.file){
             res.status(400).json({
                 status: false,
@@ -38,7 +39,7 @@ router.post("/upload", upload.single('image'), async (req : Request, res : Respo
             res.json({message: "Image uploaded successfully", path: imgPath});
         }
     
-       
+        */
         
      
         
