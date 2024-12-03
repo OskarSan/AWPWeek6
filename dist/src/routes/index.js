@@ -40,22 +40,27 @@ router.get("/offers", async (req, res) => {
     try {
         const offers = await Offer_1.Offer.find();
         const resOffers = [];
-        console.log(offers[0]);
         for (let i = 0; i < offers.length; i++) {
+            let imagePath = null;
             if (offers[i].imageId) {
                 const image = await Image_1.Image.findById(offers[i].imageId);
                 if (image) {
-                    offers[i].imageId = image.path;
+                    imagePath = image.path;
                 }
             }
-            else {
-                offers[i].imageId = "";
-            }
+            const tOffer = {
+                title: offers[i].title,
+                description: offers[i].description,
+                price: offers[i].price,
+                imagePath: imagePath
+            };
+            resOffers.push(tOffer);
         }
-        res.status(200).json({ offers });
+        res.status(200).json({ offers: resOffers });
     }
     catch (error) {
         console.log(error);
+        res.status(500).json({ status: false, data: "Internal Server Error" });
     }
 });
 exports.default = router;

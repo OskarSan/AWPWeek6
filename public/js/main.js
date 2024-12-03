@@ -53,12 +53,25 @@ async function updateOffers(){
             console.log(offer.imageId)
             const offerDiv = document.createElement('div');
             offerDiv.classList.add("offerDiv")
-            offerDiv.innerHTML = `
-            <p>${offer.title}</p>
-            <p>${offer.price}</p>
-            <p>${offer.description}</p>
-            <img src="${offer.imageId}" alt="offer image" width="200">
-            `;
+            
+            
+            if(offer.imagePath){
+                offerDiv.innerHTML = `
+                <p>${offer.title}</p>
+                <p>${offer.price}</p>
+                <p>${offer.description}</p>
+                <img src="${offer.imagePath}" alt="offer image" width="200">
+                `;
+            }else{
+                offerDiv.innerHTML = `
+                <p>${offer.title}</p>
+                <p>${offer.price}</p>
+                <p>${offer.description}</p>
+                <img>
+                `;
+            }
+            
+
             offersContainer.appendChild(offerDiv);
         }
 

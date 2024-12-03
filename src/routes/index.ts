@@ -50,29 +50,35 @@ router.post("/upload", upload.single('image'), async (req : Request, res : Respo
 });
 
 
+router.get("/offers", async (req: Request, res: Response) => {
+    try {
+        const offers: IOffer[] = await Offer.find();
+        const resOffers: TOffer[] = [];
 
-router.get("/offers", async (req : Request, res : Response) => {
-
-
-    try{
-        const offers : IOffer[] = await Offer.find();
-        const resOffers : TOffer[] = [];
-        console.log(offers[0]);
-        for(let i = 0; i < offers.length; i++){
-            if(offers[i].imageId){
-                const image : IImage | null = await Image.findById(offers[i].imageId);
+        for (let i = 0; i < offers.length; i++) {
+            let imagePath: string | null = null;
+            if (offers[i].imageId) {
+                const image: IImage | null = await Image.findById(offers[i].imageId);
                 if (image) {
-                    offers[i].imageId = image.path;
-                }}else{
-                    offers[i].imageId = "";
+                    imagePath = image.path;
                 }
+            }
+
+            const tOffer: TOffer = {
+                title: offers[i].title,
+                description: offers[i].description,
+                price: offers[i].price,
+                imagePath: imagePath
+            };
+
+            resOffers.push(tOffer);
         }
-        res.status(200).json({offers});
+
+        res.status(200).json({ offers: resOffers });
     } catch (error) {
         console.log(error);
+        res.status(500).json({ status: false, data: "Internal Server Error" });
     }
-
-
 });
 
 export default router
