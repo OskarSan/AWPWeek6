@@ -39,6 +39,7 @@ router.post("/upload", multer_config_1.default.single('image'), async (req, res)
 router.get("/offers", async (req, res) => {
     try {
         const offers = await Offer_1.Offer.find();
+        const resOffers = [];
         console.log(offers[0]);
         for (let i = 0; i < offers.length; i++) {
             if (offers[i].imageId) {
@@ -51,7 +52,7 @@ router.get("/offers", async (req, res) => {
                 offers[i].imageId = "";
             }
         }
-        res.status(201).json({ offers });
+        res.status(200).json({ offers });
     }
     catch (error) {
         console.log(error);

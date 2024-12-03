@@ -6,6 +6,13 @@ import { Offer, IOffer } from "../models/Offer";
 
 const router: Router = Router();
 
+type TOffer = {
+    title: string
+    description: string
+    price: number
+    imagePath: string | null
+}
+
 
 router.post("/upload", upload.single('image'), async (req : Request, res : Response) => {
     try{
@@ -49,6 +56,7 @@ router.get("/offers", async (req : Request, res : Response) => {
 
     try{
         const offers : IOffer[] = await Offer.find();
+        const resOffers : TOffer[] = [];
         console.log(offers[0]);
         for(let i = 0; i < offers.length; i++){
             if(offers[i].imageId){
@@ -59,7 +67,7 @@ router.get("/offers", async (req : Request, res : Response) => {
                     offers[i].imageId = "";
                 }
         }
-        res.status(201).json({offers});
+        res.status(200).json({offers});
     } catch (error) {
         console.log(error);
     }

@@ -45,7 +45,7 @@ offerForm.addEventListener('submit', async (e) => {
         for (let offer of offersData.offers) {
             console.log(offer.imageId)
             const offerDiv = document.createElement('div');
-            offerDiv.className("offerDiv")
+            offerDiv.classList.add("offerDiv")
             offerDiv.innerHTML = `
             <p>${offer.title}</p>
             <p>${offer.price}</p>
