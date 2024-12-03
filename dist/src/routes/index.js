@@ -45,7 +45,9 @@ router.get("/offers", async (req, res) => {
             if (offers[i].imageId) {
                 const image = await Image_1.Image.findById(offers[i].imageId);
                 if (image) {
-                    imagePath = image.path;
+                    imagePath = image.path.replace(/\\/g, '/');
+                    ;
+                    console.log(imagePath, "polku AAAAAAAAAAAAAAAAAAAAAAAAAAAA");
                 }
             }
             const tOffer = {
