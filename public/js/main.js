@@ -46,10 +46,10 @@ async function updateOffers(){
         const offersRes = await fetch('/offers', {
             method: 'GET'
         });
-        const offersData = await offersRes.json();
-
+        const offers = await offersRes.json();
+        console.log(offers.offers.length, "offers");
         offersContainer.innerHTML = '';
-        for (let offer of offersData.offers) {
+        for (let offer of offers.offers) {
             console.log(offer.imageId)
             const offerDiv = document.createElement('div');
             offerDiv.classList.add("offerDiv")
