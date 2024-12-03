@@ -19,12 +19,10 @@ router.post("/upload", upload.single('image'), async (req : Request, res : Respo
 
         if(!req.file){
             
-            
             console.log(offer);
             await offer.save();
             res.status(201).json({message: "Offer created successfully", offer});
             
-    
         } else {
             const imgPath : string = req.file.path.replace("public", "");
 

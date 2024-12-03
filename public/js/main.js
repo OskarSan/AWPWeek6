@@ -2,7 +2,7 @@ const offerForm = document.getElementById('offerForm');
 const titleInput = document.getElementById('title');
 const priceInput = document.getElementById('price');
 const textArea = document.getElementById('description');   
-const imageInput = document.getElementById('image-input');
+const imageInput = document.getElementById('image');
 const submitBtn = document.getElementById('submit');
 
 offerForm.addEventListener('submit', async (e) => {
