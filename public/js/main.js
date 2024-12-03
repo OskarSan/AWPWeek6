@@ -5,7 +5,7 @@ const textArea = document.getElementById('description');
 const imageInput = document.getElementById('image');
 const submitBtn = document.getElementById('submit');
 const offersContainer = document.getElementById('offersContainer');
-
+updateOffers();
 offerForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     console.log('submit');
@@ -35,13 +35,20 @@ offerForm.addEventListener('submit', async (e) => {
     
     }
     
+    updateOffers();
 
+});
+
+async function updateOffers(){
+    
     try{
 
         const offersRes = await fetch('/offers', {
             method: 'GET'
         });
         const offersData = await offersRes.json();
+
+        offersContainer.innerHTML = '';
         for (let offer of offersData.offers) {
             console.log(offer.imageId)
             const offerDiv = document.createElement('div');
@@ -58,10 +65,4 @@ offerForm.addEventListener('submit', async (e) => {
     }catch(err){
         console.log(err);
     }
-
-
-
-
-
-
-});
+}
