@@ -40,9 +40,7 @@ offerForm.addEventListener('submit', async (e) => {
 });
 
 async function updateOffers(){
-    
     try{
-
         const offersRes = await fetch('/offers', {
             method: 'GET'
         });
@@ -50,31 +48,39 @@ async function updateOffers(){
         console.log(offers.length, "offers");
         offersContainer.innerHTML = '';
         for (let offer of offers) {
-            console.log(offer.imageId)
+            console.log(offer.imageId);
             const offerDiv = document.createElement('div');
-            offerDiv.classList.add("offerDiv")
-            
-            
-            if(offer.imagePath){
-                offerDiv.innerHTML = `
-                <p>${offer.title}</p>
-                <p>${offer.price}</p>
-                <p>${offer.description}</p>
-                <img src="${offer.imagePath}" alt="offer image" width="200">
-                `;
-            }else{
-                offerDiv.innerHTML = `
-                <p>${offer.title}</p>
-                <p>${offer.price}</p>
-                <p>${offer.description}</p>
-                <img>
-                `;
-            }
-            
+            offerDiv.classList.add("col", "s12", "m6", "l4");
 
+            const cardDiv = document.createElement('div');
+            cardDiv.classList.add("card", "hoverable");
+
+            const cardImageDiv = document.createElement('div');
+            cardImageDiv.classList.add("card-image");
+
+            const img = document.createElement('img');
+            img.classList.add("responsive-img");
+            img.src = offer.imagePath || '';
+
+            const cardTitle = document.createElement('span');
+            cardTitle.classList.add("card-title");
+            cardTitle.textContent = offer.title;
+
+            cardImageDiv.appendChild(img);
+            cardImageDiv.appendChild(cardTitle);
+            cardDiv.appendChild(cardImageDiv);
+
+            const cardContent = document.createElement('div');
+            cardContent.classList.add("card-content");
+            cardContent.innerHTML = `
+                <p>${offer.description}</p>
+                <p>${offer.price}</p>
+            `;
+
+            cardDiv.appendChild(cardContent);
+            offerDiv.appendChild(cardDiv);
             offersContainer.appendChild(offerDiv);
         }
-
     }catch(err){
         console.log(err);
     }
