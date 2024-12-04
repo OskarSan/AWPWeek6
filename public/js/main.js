@@ -50,8 +50,8 @@ async function updateOffers(){
         for (let offer of offers) {
             console.log(offer.imageId);
             const offerDiv = document.createElement('div');
-            offerDiv.classList.add("col", "s12", "m6", "l4");
-            offerDiv.id = "offerDiv"
+            offerDiv.classList.add("col", "s12", "m6", "l4", "offerDiv");
+        
 
             const cardDiv = document.createElement('div');
             cardDiv.classList.add("card", "hoverable");
