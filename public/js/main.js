@@ -6,7 +6,7 @@ const imageInput = document.getElementById('image');
 const submitBtn = document.getElementById('submit');
 const offersContainer = document.getElementById('offersContainer');
 updateOffers();
-offerForm.addEventListener('submit', async (e) => {
+submitBtn.addEventListener('click', async (e) => {
     e.preventDefault();
     console.log('submit');
     const formData = new FormData(offerForm);    
